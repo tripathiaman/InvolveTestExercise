@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "involve-test-exercise-client-side-solution",
+    "id": "5f561505-afa3-45de-8427-b13a38be176d",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.19.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "involve-test-exercise description"
+      },
+      "longDescription": {
+        "default": "involve-test-exercise description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "involve-test-exercise Feature",
+        "description": "The feature that activates elements of the involve-test-exercise solution.",
+        "id": "d1675ae6-8747-446c-978c-1163d6588d56",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/involve-test-exercise.sppkg"
+  }
+}

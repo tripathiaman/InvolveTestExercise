@@ -1,0 +1,19 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "helpdesk-tickets-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/helpdeskTickets/HelpdeskTicketsWebPart.js",
+          "manifest": "./src/webparts/helpdeskTickets/HelpdeskTicketsWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "HelpdeskTicketsWebPartStrings": "lib/webparts/helpdeskTickets/loc/{locale}.js",
+    "ControlStrings": "node_modules/@pnp/spfx-controls-react/lib/loc/{locale}.js"
+  }
+}
