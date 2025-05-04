@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from "react";
 import { useInvolvList } from "../../../Common/InvolvListContext"
+import { InvolveUrlField} from "../../../Common/InvolveUrlField"
 import styles from './HelpdeskTickets.module.scss';
 
 interface AddTicketProps {
@@ -35,6 +36,10 @@ export const AddTicket: React.FunctionComponent<AddTicketProps> = (props) => {
         setFormData({ ...formData, [name]: value });
     };
 
+    const handleUrlFieldChange = (updatedValue: { Url: string; Description: string }) :void => {
+        setFormData({ ...formData, IssueSource: updatedValue });
+    };
+
     const handleSubmit = async (e:any):Promise<void> => {
         e.preventDefault();
         await addItem(formData);
@@ -45,7 +50,7 @@ export const AddTicket: React.FunctionComponent<AddTicketProps> = (props) => {
     return (
         <div className={styles.AddTicketContainer} >
         <form>
-            <div>
+            <div className={styles.frmRow}>
                 <label>Title</label>
                 <input
                     type="text"
@@ -56,7 +61,7 @@ export const AddTicket: React.FunctionComponent<AddTicketProps> = (props) => {
                     required
                 />
             </div>
-            <div>
+            <div  className={styles.frmRow}>
                 <label>Description</label>
                     <textarea
                     rows={7} maxLength={500}
@@ -68,7 +73,7 @@ export const AddTicket: React.FunctionComponent<AddTicketProps> = (props) => {
                 />
                 </div>
 
-            <div>
+            <div className={styles.frmRow}>
                 <label>Priority</label>
                 <select name="Priority" value={formData.Priority} onChange={handleChange}>
                     <option value="Critical">Critical</option>
@@ -77,7 +82,7 @@ export const AddTicket: React.FunctionComponent<AddTicketProps> = (props) => {
                     <option value="Low">Low</option>
                 </select>
             </div>
-            <div>
+            <div className={styles.frmRow}>
                 <label>Status</label>
                 <select name="Status" value={formData.Status} onChange={handleChange}>
                     <option value="New">New</option>
@@ -87,8 +92,14 @@ export const AddTicket: React.FunctionComponent<AddTicketProps> = (props) => {
                     <option value="Duplicate">Duplicate</option>
                 </select>
                 </div>
+                <div>
+                    <label>Issue Source</label>
+                    <InvolveUrlField  onChange={handleUrlFieldChange} UrlValue={formData.IssueSource} />
+                </div>
+                <div className={styles.btnRow}>
                 <button onClick={(e) => handleSubmit(e)} >Add Ticket</button>
                 <button onClick={(e) => props.onCancel()} >Cancel</button>
+                </div>
             </form>
 
         </div>

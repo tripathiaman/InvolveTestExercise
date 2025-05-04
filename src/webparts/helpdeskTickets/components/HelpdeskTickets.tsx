@@ -44,8 +44,8 @@ export const HelpdeskTickets: React.FunctionComponent<IHelpdeskTicketsProps> = (
             
             selectors: {
                 ['@media (min-width: 480px)']: {
-                    maxWidth: "1200px",
-                    width: "90%"
+                    maxWidth: "900px",
+                    width: "60%"
                 }
             }
         },
@@ -54,16 +54,9 @@ export const HelpdeskTickets: React.FunctionComponent<IHelpdeskTicketsProps> = (
 
     return (
         <InvolvListProvider sp={props.sp} listName="Tickets" context={props.context} >
+            
             {view === "view" &&
                 <div className={styles.helpdeskTickets}>
-                    {/*<h2>Tickets</h2>*/}
-                    {/*<div>*/}
-                    {/*    <div>*/}
-                    {/*        <input type="text" placeholder="Search Title" value={searchText} onChange={(e)=>setSearchText(e.target.value) } />*/}
-                    {/*        <button onClick={handleAdd}>Add</button>*/}
-                    {/*    </div>*/}
-                    {/*    <button onClick={handleAdd}>Add</button>*/}
-                    {/*</div>*/}
                     <Header handleAdd={handleAdd} />
                     <TicketsComponent handleEdit={handleEdit} />
                 </div>

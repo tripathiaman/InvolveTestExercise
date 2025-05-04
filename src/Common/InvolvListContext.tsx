@@ -25,6 +25,7 @@ interface IInvolvListContext {
     currentTickerPage: any;
     pageIdx:number;
     onTitleSearch: (searchValue:string) => any;
+    context:WebPartContext;
 }
 
 const InvolvListContext = createContext<IInvolvListContext | undefined>(undefined);
@@ -129,6 +130,8 @@ const InvolvListProvider: React.FunctionComponent<InvolvListProviderProps> = ({ 
     try {
       await sp.web.lists.getByTitle(listName).items.add(item);
       await getItems();
+      setPageIdx(0);
+      setPaging({next:false,prev:false});
     } catch (error) {
       console.error("Error adding item:", error);
     }
@@ -143,12 +146,14 @@ const InvolvListProvider: React.FunctionComponent<InvolvListProviderProps> = ({ 
     try {
       await sp.web.lists.getByTitle(listName).items.getById(id).update(item);
       await getItems();
+      setPageIdx(0);
+      setPaging({next:false,prev:false});
     } catch (error) {
       console.error("Error updating item:", error);
     }
     };
 
-    const getPeoplePickerContext = (): IPeoplePickerContext => {
+    const getPeoplePickerContext = (): any => {
         const peoplePickerContext: IPeoplePickerContext = {
             absoluteUrl: context.pageContext.web.absoluteUrl,
             msGraphClientFactory: context.msGraphClientFactory as any,
@@ -165,7 +170,7 @@ const InvolvListProvider: React.FunctionComponent<InvolvListProviderProps> = ({ 
   }, [rowlimit, paging, searchText]);
 
   return (
-      <InvolvListContext.Provider value={{ items, getItems, addItem, updateItem, getPeoplePickerContext, getCurrentUser, onRowLimitChange, onNextPage, onPreviousPage, rowlimit, onTitleSearch,currentTickerPage,pageIdx }}>
+      <InvolvListContext.Provider value={{ items, getItems, addItem, updateItem, getPeoplePickerContext, getCurrentUser, onRowLimitChange, onNextPage, onPreviousPage, rowlimit, onTitleSearch,currentTickerPage,pageIdx,context }}>
     {children}
   </InvolvListContext.Provider>
   );
